@@ -1,0 +1,51 @@
+{% extends "myfoodapp/generic_template.html" %}
+{% block addstyle %}
+{% load static %}
+<style type="text/css">
+    body{
+      color: white;
+      background-size:cover;
+      background-image: url({% static 'img/portfolio/fullsize/4.jpg' %});
+    }
+    form{
+        color: black;
+    }
+</style>
+{% endblock %}
+
+{% block titlepage %}Accueil{% endblock %}
+
+{% block mid2 %}
+<div class="row">
+  <div class="col-md-12">
+      <center>
+      <h1>Du gras, oui, mais de qualité !</h1>
+      <h2>Trouvez un produit de substitution <br />
+          pour ceux que vous consommez <br />
+          tous les jours
+      </h2>
+      <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="."><center>
+                {% csrf_token %}
+                {{ form.as_table }}
+                <input type="submit" value="Chercher" /></center>
+            </form>
+        </div>
+    </div>
+    </center>
+  </div>
+</div>
+{% endblock %}
+
+{% block triplemid %}
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'myfoodapp:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% endblock %}

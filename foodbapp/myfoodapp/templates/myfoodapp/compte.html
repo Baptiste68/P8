@@ -1,0 +1,30 @@
+{% extends "myfoodapp/generic_template.html" %}
+{% block titlepage %}Mon Compte{% endblock %}
+
+
+{% block mid2 %}
+
+{% if user.is_authenticated %}
+<div class="row">
+    <div class="col-md-12">
+        <p><strong><center>A Hoy</center></strong></p>
+        <p><strong><center>{{ user.username }} !</center></strong></p>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block mid3 %}
+{% if user.is_authenticated %}
+<div class="row">
+    <div class="col-md-12">
+        <p><strong><center>{{ user.email }} !</center></strong></p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
