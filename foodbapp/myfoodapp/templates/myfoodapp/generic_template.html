@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   
   {% block title %}<title>Django DIY Blog</title>{% endblock %}
@@ -13,6 +13,7 @@
   <!-- Add additional CSS in static file -->
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/creative.css' %}">
+  <link rel="stylesheet" href="{% static 'css/image_over.css' %}">
   {% block addstyle %}{% endblock %}
 </head>
 <body>
@@ -22,13 +23,16 @@
   <div class="row">
     <div class="col-md-1"><a href='/myfoodapp/'><img src="{% static 'img/robot.PNG' %}" alt="Flowers in Chania"></a></div>
     <div class="col-md-2">Pur Beurre</div>
-    <div class="col-md-1">.col-md-1</div>
-    <div class="col-md-1">.col-md-1</div>
-    <div class="col-md-1">.col-md-1</div>
-    <div class="col-md-1">.col-md-1</div>
-    <div class="col-md-1">.col-md-1</div>
-    <div class="col-md-1">.col-md-1</div>
-    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"><a href='/myfoodapp/populate/'>Populate</a></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+        <form action="/myfoodapp/search/">
+            <input type="text" name="product" placeholder="Chercher"><br>
+        </form>
+    </div>
     {% if user.is_authenticated %}
     <div class="col-md-1"><a href="/myfoodapp/compte/">Mon Compte</a></div>
     {% else %}
@@ -57,8 +61,8 @@
   {% endblock %}
   {% block footer %}
   <div class="row">
-    <div class="col-md-6">.col-md-6</div>
-    <div class="col-md-6">.col-md-6</div>
+    <div class="col-md-6"><center>Mentions legales</center></div>
+    <div class="col-md-6"><center>Contact</center></div>
   </div>
   {% endblock %}
 </div>

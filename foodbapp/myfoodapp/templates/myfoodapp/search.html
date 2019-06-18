@@ -1,0 +1,37 @@
+{% extends "myfoodapp/generic_template.html" %}
+{% block titlepage %}Aliments{% endblock %}
+{% load static %}
+
+
+{% block mid2 %}
+
+<div class="row">
+    <div class="col-md-12">
+        <p class="text-center"><strong>{{ aliment }}</strong></p>
+
+        <p class="text-center">Vous pouver remplacer cet aliment par:</p>
+        <div class = "row text-center" style="">
+            {% for i in my_result %}
+                <div class="col-sm-4 text-center" style="padding : 10px;">
+                    <div class='over-management'>
+                        <a href='/myfoodapp/product/?product={{ i.id }}'><img src="{% static 'img/robot.PNG' %}" width="100%" class="img-thumbnail" data-toggle="modal"></a>
+                        {% get_static_prefix as STATIC_PREFIX %}
+                        <img src="{{ STATIC_PREFIX }}img/{{ i.nutri_score_food }}.png" width="50px" height="50px" class="over-image img-circle">
+                        {{ i.name_food }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block mid3 %}
+{% if user.is_authenticated %}
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

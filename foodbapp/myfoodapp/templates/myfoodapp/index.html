@@ -26,10 +26,9 @@
         </h2>
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="."><center>
-                    {% csrf_token %}
-                    {{ form.as_table }}
-                    <input type="submit" value="Chercher" /></center>
+                <form action="search/"><center>
+                    <input type="text" name="product" placeholder="Produit">
+                    <input type="submit" value="Chercher" class="btn btn-primary"/></center>
                 </form>
             </div>
         </div>
@@ -60,7 +59,12 @@
         <div class="row">
             <div class="col-md-6">
                 <img src="{% static 'img/robot.PNG' %}" alt="Flowers in Chania">
-                <p>Phone</p>
+                <address>
+                    <strong>Twitter, Inc.</strong><br>
+                        1355 Market Street, Suite 900<br>
+                        San Francisco, CA 94103<br>
+                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                </address>
             </div>
             <div class="col-md-6">
                 <img src="{% static 'img/robot.PNG' %}" alt="Flowers in Chania">
