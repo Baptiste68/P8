@@ -12,4 +12,7 @@ urlpatterns = [
     path('deconnexion/', views.deconnexion, name='deconnexion'),
     path('creation/', views.creation, name='creation'),
     path('compte/', views.CompteView.as_view(), name='compte'),
+    path('populate/', views.PopulateView.as_view(), name='populate'),
+    path('search/', views.SearchView.as_view(), name='search'),
+    path('product/', views.ProductView.as_view(), name='product'),
 ]

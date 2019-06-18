@@ -10,8 +10,3 @@ class NewUserForm(forms.Form):
     email = forms.EmailField()
     username = forms.CharField(label="Nom d'utilisateur", max_length=30)
     password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)
-
-class SearchForm(forms.Form):
-    product = forms.CharField(label="Produit", max_length=40)
-    class Meta:
-        fields = '__all__'
