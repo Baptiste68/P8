@@ -1,0 +1,22 @@
+{% extends "myfoodapp/generic_template.html" %}
+{% block titlepage %}Détail{% endblock %}
+{% load static %}
+
+{% block mid2 %}
+    <div class="row">
+        <div class="col-md-12" style="padding-left : 10%; padding-right : 10%;">
+            <div class="col-md-12" style="background-image : url({{ bkg_img }});">
+                <br />
+                <h2 class="text-center"><strong>{{ sub }} remplace {{ issub }}</strong></h2>
+                <br />
+            </div>        
+        </div>
+    </div>
+{% endblock %}
+
+{% block mid3 %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
