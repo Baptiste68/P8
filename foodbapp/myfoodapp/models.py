@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -31,6 +32,7 @@ class Food(models.Model):
     store_food = models.TextField(max_length=200, null=True)
     nutri_score_food = models.CharField(max_length=30, null=True)
     link_food = models.TextField(max_length=500, null=True)
+    img_food = models.TextField(max_length=500, null=True)
 
     def __str__(self):
         return self.name_food
@@ -49,8 +51,9 @@ class foodcate(models.Model):
         return self.Food_id
 
 class saved(models.Model):
-    Food_id_foodsub = models.ManyToManyField(Food, related_name='foodsub')
-    Food_id_foodissub = models.ManyToManyField(Food, related_name='foodissub')
+    User_id_saved = models.ForeignKey(User, on_delete=models.CASCADE, default="1")
+    Food_id_foodsub = models.ForeignKey(Food, on_delete=models.CASCADE, default="1", related_name='foodsub')
+    Food_id_foodissub = models.ForeignKey(Food, on_delete=models.CASCADE, default="1", related_name='foodissub')
 
     def __str__(self):
         return self.Food_id_foodsub

@@ -15,4 +15,7 @@ urlpatterns = [
     path('populate/', views.PopulateView.as_view(), name='populate'),
     path('search/', views.SearchView.as_view(), name='search'),
     path('product/', views.ProductView.as_view(), name='product'),
+    path('saved/', views.SavedView.as_view(), name='saved'),
+    path('viewsaved/', views.MyFoodView.as_view(), name='viewsaved'),
+    path('details/', views.DetailsView.as_view(), name='details'),
 ]
