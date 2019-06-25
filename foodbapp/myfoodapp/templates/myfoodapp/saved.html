@@ -1,7 +1,9 @@
-{% extends "myfoodapp/generic_template.html" %}
+{% extends "myfoodapp/base.html" %}
 {% block titlepage %}Aliments{% endblock %}
 {% load static %}
 
+{% block headsec %}
+{% endblock %}
 
 {% block mid2 %}
 
@@ -25,7 +27,7 @@
 
 {% endblock %}
 
-{% block mid3 %}
+{% block sect3 %}
 {% if user.is_authenticated %}
 {% endif %}
 {% endblock %}

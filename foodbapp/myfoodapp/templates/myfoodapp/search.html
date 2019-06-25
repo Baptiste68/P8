@@ -1,7 +1,9 @@
-{% extends "myfoodapp/generic_template.html" %}
+{% extends "myfoodapp/base.html" %}
 {% block titlepage %}Aliments{% endblock %}
 {% load static %}
 
+{% block headsec %}
+{% endblock %}
 
 {% block mid2 %}
 
@@ -18,8 +20,8 @@
 {% endblock %}
 
 {% block mid3 %}
-{% block spec_txt %}<p class="text-center"></p>Vous pouver remplacer cet aliment par:</p>{% endblock %}
-<div class = "row text-center" style="">
+{% block spec_txt %}<p class="text-center">Vous pouver remplacer cet aliment par:</p>{% endblock %}
+<div class = "row text-center" style="padding-left : 10%; padding-right : 10%;">
 {% for i in my_result %}
     <div class="col-sm-4 text-center" style="padding : 10px; background-size: cover;">
         <div class='over-management'>

@@ -1,41 +1,31 @@
-{% extends "myfoodapp/generic_template.html" %}
+{% extends "myfoodapp/base.html" %}
 {% block addstyle %}
 {% load static %}
-<style type="text/css">
-    body{
-      color: white;
-      background-size:cover;
-      background-image: url({% static 'img/portfolio/fullsize/4.jpg' %});
-    }
-    form{
-        color: black;
-    }
-</style>
 {% endblock %}
 
 {% block titlepage %}Accueil{% endblock %}
 
+{% block mid1 %}
+<div class="col-md-12">
+    <h1 class="text-center">Du gras, oui, mais de qualité !</h1>
+    <h2 class="text-center">Trouvez un produit de substitution <br />
+        pour ceux que vous consommez <br />
+        tous les jours
+    </h2>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="search/"><center>
+                <input type="text" name="product" placeholder="Produit">
+                <input type="submit" value="Chercher" class="btn btn-primary"/></center>
+            </form>
+        </div>
+    </div>
+    <br />
+</div>
+{% endblock %}
+
 {% block mid2 %}
 <div class="row">
-    <div class="col-md-12">
-        <center>
-        <h1>Du gras, oui, mais de qualité !</h1>
-        <h2>Trouvez un produit de substitution <br />
-            pour ceux que vous consommez <br />
-            tous les jours
-        </h2>
-        <div class="row">
-            <div class="col-md-12">
-                <form action="search/"><center>
-                    <input type="text" name="product" placeholder="Produit">
-                    <input type="submit" value="Chercher" class="btn btn-primary"/></center>
-                </form>
-            </div>
-        </div>
-        </center>
-        <br />
-    </div>
-
     <div class="col-md-12">
         <center>
         <h2>Colette et Remmy</h2>
@@ -51,33 +41,25 @@
         </center>
         <br />
     </div>
-
-    <div class="col-md-12">
-        <center>
-        <h2>Contactez-nous !</h2>
-        <p>[PHRASE]</p>
-        <div class="row">
-            <div class="col-md-6">
-                <img src="{% static 'img/robot.PNG' %}" alt="Flowers in Chania">
-                <address>
-                    <strong>Twitter, Inc.</strong><br>
-                        1355 Market Street, Suite 900<br>
-                        San Francisco, CA 94103<br>
-                    <abbr title="Phone">P:</abbr> (123) 456-7890
-                </address>
-            </div>
-            <div class="col-md-6">
-                <img src="{% static 'img/robot.PNG' %}" alt="Flowers in Chania">
-                <p>mail@mail.com</p>
-            </div>
-        </div>
-        </center>
-    </div>
-
 </div>
 {% endblock %}
 
 {% block mid3 %}
 <div class="row">
+<div class="col-md-12 contact">
+        <h2 class="text-center">Contactez-nous !</h2>
+        <p class="text-center">[PHRASE]</p>
+        <div class="row">
+            <div class="col-md-6 ml-auto text-center mb-5 mb-lg-0">
+                <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+                <div>+33 (0)3 82 82 82 82</div>
+            </div>
+            <div class="col-md-6 mr-auto text-center">
+                <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                <!-- Make sure to change the email address in anchor text AND the link below! -->
+                <a class="d-block" href="mailto:foodapp@foodapp.com">foodapp@foodapp.com</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

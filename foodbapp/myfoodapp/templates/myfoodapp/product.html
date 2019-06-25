@@ -1,7 +1,9 @@
-{% extends "myfoodapp/generic_template.html" %}
+{% extends "myfoodapp/base.html" %}
 {% block titlepage %}Aliments{% endblock %}
 {% load static %}
 
+{% block headsec %}
+{% endblock %}
 
 {% block mid2 %}
 
@@ -10,34 +12,34 @@
         <p class="text-center"><strong>{{ my_product.name_food }}</strong></p>
 
         <p class="text-center">Vous pouver remplacer cet aliment par:</p>
-
-        <div class="col-sm-6 text-center">
-            <p class="text-center">Nutri score</p>
-            {% for i in score_range %}
-                {% if i == my_product.nutri_score_food %}
-                    <strong>{{ i|capfirst }}</strong>
-                {% else %}
-                    {{ i }}
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="col-sm-6 text-center">
-            {% if my_product.quantity_food == "None" or my_product.quantity_food == "" %}
-                <p class="text-center">Pas d'indication de quantité</p>
-            {% else %}
-                <p class="text-center">Repère nutritionnels <br />
-                pour {{ my_product.quantity_food }}</p>
-            {% endif %}
-        </div>
     </div>
-    <div class="col-md-12">
-        <a href="{{ my_product.link_food }}">Lien</a>
+    <div class="col-sm-6 text-center">
+        <p class="text-center">Nutri score</p>
+        {% for i in score_range %}
+        {% if i == my_product.nutri_score_food %}
+            <strong>{{ i|capfirst }}</strong>
+        {% else %}
+            {{ i }}
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="col-sm-6 text-center">
+    {% if my_product.quantity_food == "None" or my_product.quantity_food == "" %}
+        <p class="text-center">Pas d'indication de quantité</p>
+    {% else %}
+        <p class="text-center">Repère nutritionnels <br />
+        pour {{ my_product.quantity_food }}</p>
+    {% endif %}
+    </div>
+    
+    <div class="col-md-12 text-center">
+        <a href="{{ my_product.link_food }}" target="_blank">Lien</a>
     </div>
 </div>
 
 {% endblock %}
 
-{% block mid3 %}
+{% block sect3 %}
 {% if user.is_authenticated %}
 {% endif %}
 {% endblock %}
