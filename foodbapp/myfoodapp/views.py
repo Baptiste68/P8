@@ -57,6 +57,7 @@ def creation(request):
     errorusr = False
     erroremail = False
 
+    created = False
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():
@@ -72,12 +73,13 @@ def creation(request):
             else:
                 newuser = User.objects.create_user(
                     username, email, password, first_name=first_name, last_name=last_name)
+                created = True
                 if not newuser:  # Si l'objet renvoyé n'est pas None
                     error = True
     else:
         form = NewUserForm()
 
-    return render(request, 'myfoodapp/creation.html', locals())
+    return render(request, 'myfoodapp/creation.html', locals(), {'created' : created})
 
 
 def connexion(request):
