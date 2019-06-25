@@ -10,6 +10,9 @@
     display: block;
 }
 
+body{
+    font-family: "Scope One", sans-serif;
+}
 
 header.masthead {
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(92, 77, 66, 0.8)), to(rgba(92, 77, 66, 0.8))), url('/static/img/portfolio/fullsize/2.jpg' %});
@@ -43,16 +46,20 @@ footer{
 
 #toptitle{
     color: rgb(196, 85, 37);
+    font-family: "Scope One", sans-serif;
 }
 
 #mainNav .navbar-brand{
     color: rgb(196, 85, 37);
+    font-family: "Scope One", sans-serif;
 }
 
 #mainNav .navbar{
     color: rgb(196, 85, 37);
+    font-family: "Scope One", sans-serif;
 }
 
 #mainNav.navbar-scrolled .navbar-brand{
     color: rgb(196, 85, 37);
+    font-family: "Scope One", sans-serif;
 }
