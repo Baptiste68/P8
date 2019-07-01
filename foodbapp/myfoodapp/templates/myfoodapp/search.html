@@ -9,9 +9,9 @@
 
 <div class="row">
     <div class="col-md-12" style="padding-left : 10%; padding-right : 10%;">
-        <div class="col-md-12" style="background-image : url({{ bkg_img }});">
+        <div class="col-md-12" style="background-image : url({{ bkg_img }});; background-size: 100% 100%; height: 200px;">
             <br />
-            <h2 class="text-center"><strong>{{ aliment }}</strong></h2>
+            <h2 class="text-center" style="text-shadow: black 1px 1px;"><strong>{{ aliment }}</strong></h2>
             <br />
         </div>        
     </div>
@@ -28,10 +28,10 @@
             <a href='/myfoodapp/product/?product={{ i.id }}'><img src="{{ i.img_food }}" class="img-thumbnail" width="100%" style="height: 250px"></a>
             {% get_static_prefix as STATIC_PREFIX %}
             <img src="{{ STATIC_PREFIX }}img/{{ i.nutri_score_food }}.png" width="50px" height="50px" class="over-image img-circle">
-            {{ i.name_food }}
             {% block saved %}
-            <a href='/myfoodapp/saved/?sub={{ i.id }}&tosub={{ id_to_sub }}'>save</a>
+            <a href='/myfoodapp/saved/?sub={{ i.id }}&tosub={{ id_to_sub }}'><img src="{{ STATIC_PREFIX }}img/save.png" width="20px" height="20px"></a>
             {% endblock %}
+            {{ i.name_food }}
         </div>
     </div>
 {% endfor %}

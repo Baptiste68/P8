@@ -29,13 +29,29 @@
     <div class="col-md-12">
         <center>
         <h2>Colette et Remy</h2>
-        <p>[HISTOIRE]</p>
+        <p class="text-faded text-justify mb-4" style="padding-left: 10%; padding-right: 10%">
+            <br />
+            Nous sommes une jeune startup fondée par Remy et Colette Tatou, 
+            deux restaurateurs de renom. Notre restaurant, situé à Montmartre (Paris), 
+            compte une cinquantaine de couverts et ne désemplit pas. Notre spécialité, la ratatouille, 
+            nous attire une clientèle internationale charmée par les délices de ce plat typique. 
+            <br /><br />
+            Remy et Colette sont amoureux de la gastronomie française (on ne peut les blâmer !). 
+            Travaillant quotidiennement avec les meilleurs produits du terroir, ils affectionnent 
+            particulièrement la bonne chaire et aiment partager leur passion. Il est donc normal 
+            que Remy ait sauté au plafond quand Colette, un jour de déprime, sortit du placard un 
+            kilo de Nutella et l’attaqua à la petite cuillère. Pourquoi ne pas opter pour une pâte
+             à tartiner aux noisettes, plus consistante et moins sucrée ? Pourquoi, oh pourquoi 
+             s’infliger une telle souffrance ? Rémy était sidéré. La réponse de Colette fut 
+             simple : elle n’avait pas trouvé de substitut assez convainquant. A vrai dire, elle 
+             n’avait même pas cherché.
+        </p>
         <div class="row">
             <div class="col-md-6">
-                <img src="{% static 'img/colette-5.jpg' %}" width="50%" height="70%" alt="Colette">
+                <img src="{% static 'img/colette-tatou-full.png' %}" width="50%" height="70%" alt="Colette">
             </div>
             <div class="col-md-6">
-                <img src="{% static 'img/remy-5.jpg' %}" width="50%" height="70%" alt="Remy">
+                <img src="{% static 'img/remy.jpg' %}" width="50%" height="70%" alt="Remy">
             </div>
         </div>
         </center>
@@ -46,9 +62,9 @@
 
 {% block mid3 %}
 <div class="row">
-<div class="col-md-12 contact">
+<div class="col-md-12" id="contact">
         <h2 class="text-center">Contactez-nous !</h2>
-        <p class="text-center">[PHRASE]</p>
+        <p class="text-center">N'hésitez pas à nous contacter</p>
         <div class="row">
             <div class="col-md-6 ml-auto text-center mb-5 mb-lg-0">
                 <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
