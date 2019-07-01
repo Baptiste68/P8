@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
 
-from .models import Question, Choice, Categories, Food, foodcate, saved
+from .models import Categories, Food, foodcate, saved
 from .forms import ConnexionForm, NewUserForm
 
 # Create your views here.
@@ -22,35 +22,6 @@ class IndexView(View):
 
     def get(self, request):
         return render(request, self.template_name)
-
-
-class DetailView(generic.DetailView):
-    model = Question
-    template_name = 'myfoodapp/detail.html'
-
-
-class ResultsView(generic.DetailView):
-    model = Question
-    template_name = 'myfoodapp/results.html'
-
-
-def vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
-        return render(request, 'myfoodapp/detail.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('myfoodapp:results', args=(question.id,)))
 
 
 def creation(request):
@@ -84,7 +55,6 @@ def creation(request):
 
 def connexion(request):
     error = False
-
     if request.method == "POST":
         form = ConnexionForm(request.POST)
         if form.is_valid():
@@ -260,9 +230,10 @@ class ProductView(generic.ListView):
         product_id = request.GET['product']
 
         temp = Food.objects.filter(id=product_id).values(
-            'name_food', 'nutri_score_food', 'quantity_food', 'link_food')
+            'name_food', 'nutri_score_food', 'quantity_food', 'link_food', 'img_food')
         my_product = ({'name_food': temp[0]['name_food'], 'nutri_score_food': temp[0]['nutri_score_food'],
-                       'quantity_food': temp[0]['quantity_food'], 'link_food': temp[0]['link_food']})
+                       'quantity_food': temp[0]['quantity_food'], 'link_food': temp[0]['link_food'],
+                       'img_food' : temp[0]['img_food']})
 
         score_range = ['a', 'b', 'c', 'd', 'e']
 
@@ -304,15 +275,9 @@ class MyFoodView(generic.ListView):
         if saved.objects.filter(User_id_saved_id=id_user).exists():
             temp = saved.objects.filter(User_id_saved_id=id_user).values(
             'Food_id_foodissub_id', 'Food_id_foodsub_id')
-            print(temp)
-            print('Temp 0000')
-            print(temp[0]['Food_id_foodsub_id'])
             for i in temp:
                 temp_sub = Food.objects.filter(id=i['Food_id_foodsub_id']).values(
                     'name_food', 'nutri_score_food', 'img_food', 'id')
-                print(temp_sub)
-                print('sub 0000')
-                print(temp_sub[0])
                 my_result.append(
                     {'name_food': temp_sub[0]['name_food'], 'nutri_score_food': temp_sub[0]['nutri_score_food'],
                     'id': temp_sub[0]['id'], 'img_food' : temp_sub[0]['img_food'],
@@ -326,4 +291,14 @@ class DetailsView(generic.ListView):
     def get(self, request):
         sub = request.GET['sub']
         issub = request.GET['issub']
-        return render(request, self.template_name, {'sub': sub, 'issub': issub})
+        sub_det = Food.objects.filter(id=sub).values(
+                'name_food', 'img_food', 'nutri_score_food')
+        issub_det = Food.objects.filter(id=issub).values(
+                'name_food', 'img_food', 'nutri_score_food')
+        return render(request, self.template_name, {'sub_id': sub, 'issub_id': issub,
+                                                    'sub_name': sub_det[0]['name_food'],
+                                                    'sub_img': sub_det[0]['img_food'], 
+                                                    'sub_score': sub_det[0]['nutri_score_food'], 
+                                                    'issub_name': issub_det[0]['name_food'],
+                                                    'issub_img': issub_det[0]['img_food'],
+                                                    'issub_score': issub_det[0]['nutri_score_food']})

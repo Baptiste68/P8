@@ -5,9 +5,6 @@ from . import views
 app_name = 'myfoodapp'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
-    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
-    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
-    path('<int:question_id>/vote/', views.vote, name='vote'),
     path('connexion/', views.connexion, name='connexion'),
     path('deconnexion/', views.deconnexion, name='deconnexion'),
     path('creation/', views.creation, name='creation'),
@@ -18,4 +15,6 @@ urlpatterns = [
     path('saved/', views.SavedView.as_view(), name='saved'),
     path('viewsaved/', views.MyFoodView.as_view(), name='viewsaved'),
     path('details/', views.DetailsView.as_view(), name='details'),
+    path('creationsuccess/', views.creation, name='creationsuccess'),
+    path('my_view', views.ProductView.as_view(), name='my_view'),
 ]
