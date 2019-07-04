@@ -67,3 +67,8 @@ footer{
     color: rgb(196, 85, 37);
     font-family: "Scope One", sans-serif;
 }
+
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
