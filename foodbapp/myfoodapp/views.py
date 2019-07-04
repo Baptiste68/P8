@@ -76,19 +76,27 @@ def deconnexion(request):
     logout(request)
     return redirect(reverse('myfoodapp:connexion'))
 
+def legals(request):
+    return render(request, 'myfoodapp/legals.html')
 
 class CompteView(generic.ListView):
     model = User
     template_name = 'myfoodapp/compte.html'
 
+def display(request):
+    template_name = 'myfoodapp/populate.html'
+    return render(request, template_name)
 
 class PopulateView(generic.ListView):
     model = User
     template_name = 'myfoodapp/populate.html'
 
     def get(self, request):
+        display(request)
         categories_list = ["Boissons", "Viandes", "Surgelés", "Conserves",
-                           "Fromages", "Biscuits", "Chocolats", "Apéritifs", "Soupes", "Pizzas"]
+                           "Fromages", "Biscuits", "Chocolats", "Apéritifs", "Soupes", "Pizzas",
+                           "Snacks", "Epicerie", "Sauces", "Gâteaux", "Yaourts", "Jus de fruits",
+                           "Pains", "Vins", "Huiles", "Miels"]
         for category in categories_list:
             print(category)
             print(Categories.objects.filter(name_categories=category).exists())
@@ -97,9 +105,9 @@ class PopulateView(generic.ListView):
                 my_insert.save()
                 page = 1
                 k = 0
-                while k < 20:
+                while k < 40:
                     i = 0
-                    while i < 19 and k < 20:
+                    while i < 19 and k < 40:
                         url = "https://fr.openfoodfacts.org/category/" + category + "/\
             " + str(page) + ".json"
                         response = requests.get(url)
