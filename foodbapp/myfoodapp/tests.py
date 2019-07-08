@@ -81,13 +81,9 @@ class UserTest(TestCase):
         id_food2 = Food.objects.only(
             'id').get(name_food="chocolat").id
         log = self.client.login(username='basim', password='simba')
-        factory = RequestFactory()
-        #self.client.force_login(self.user_1)
-        #request = factory.get('/saved/', {'sub' : id_food1, 'tosub' : id_food2, 'user' : self.user_1})
         self.client.force_login(self.user_1)
-        #saving = SavedView.get(self, request)
         user = User.objects.get(email="bas@bas.bas")
-        response = self.client.post(reverse('myfoodapp:saved'), {
+        response = self.client.get(reverse('myfoodapp:saved'), {
             'sub' : id_food1, 
             'tosub' : id_food2,
             'user' : user
