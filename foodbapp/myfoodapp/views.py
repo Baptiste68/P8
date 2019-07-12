@@ -104,8 +104,9 @@ class PopulateView(generic.ListView):
     def get(self, request):
         display(request)
         categories_list = ["Boissons", "Viandes", "Surgelés", "Conserves",
-                           "Fromages", "Biscuits", "Chocolats", "Apéritif", "Soupes", "Pizzas",
-                           "Snacks", "Epicerie", "Sauces", "Gâteaux", "Yaourts", "Jus de fruits",
+                           "Fromages", "Biscuits", "Chocolats", "Apéritif",
+                           "Soupes", "Pizzas", "Snacks", "Epicerie",
+                           "Sauces", "Gâteaux", "Yaourts", "Jus de fruits",
                            "Pains", "Graines", "Huiles", "Poissons"]
         for category in categories_list:
             print(category)
@@ -128,18 +129,21 @@ class PopulateView(generic.ListView):
                             print("Nutri tag: " + jData.get('products')[i].get(
                                 'nutrition_grades_tags')[0])
                             print(i)
-                            if len(jData.get('products')[i].get('nutrition_grades_tags')[0])\
+                            if len(jData.get('products')[i]
+                                   .get('nutrition_grades_tags')[0])\
                                     is not 1:
                                 i = i + 1
                                 print("nutri grade fail: ")
                                 print(jData.get('products')[i].get(
                                     'nutrition_grades_tags')[0])
-                            elif jData.get('products')[i].get('product_name_fr') is None:
+                            elif jData.get('products')[i]
+                            .get('product_name_fr') is None:
                                 i = i + 1
                                 print("No name: ")
                                 print(jData.get('products')[
                                       i].get('product_name_fr'))
-                            elif len(jData.get('products')[i].get('product_name_fr')) < 1:
+                            elif len(jData.get('products')[i]
+                                     .get('product_name_fr')) < 1:
                                 i = i + 1
                                 print("No name 2: ")
                                 print(jData.get('products')[
@@ -158,14 +162,15 @@ class PopulateView(generic.ListView):
                                 stores = str(jData.get('products')
                                              [i].get('stores'))
                                 stores = stores.replace('\\', '')
-                                nutri_score = str(jData.get('products')[
-                                                  i].get('nutrition_grades_tags')[0])
+                                nutri_score = str(jData.get('products')[i]
+                                                  .get('nutrition_grades_tags')[0])
                                 nutri_score = nutri_score.replace('\\', '')
                                 link = str(jData.get('products')[i].get('url'))
                                 img = str(jData.get('products')
                                           [i].get('image_url'))
                                 print("name food : " + product_name)
-                                if not Food.objects.filter(name_food=product_name).exists():
+                                if not Food.objects.filter(
+                                        name_food=product_name).exists():
                                     my_insert = Food(
                                         name_food=product_name,
                                         quantity_food=quantity,
@@ -182,11 +187,14 @@ class PopulateView(generic.ListView):
                                     id_category = Categories.objects.only(
                                         'id').get(name_categories=category).id
 
-                                    if not foodcate.objects.filter(Food_id=my_id, Categories_id=id_category).exists():
-                                        print("food id: "+str(my_id) +
-                                              " cate : "+str(id_category))
-                                        my_insert = foodcate(Food_id=Food.objects.get(
-                                            id=my_id), Categories_id=Categories.objects.get(id=id_category))
+                                    if not foodcate.objects.filter(
+                                            Food_id=my_id,
+                                            Categories_id=id_category).exists():
+                                        my_insert = foodcate(
+                                            Food_id=Food.objects.get(
+                                                id=my_id),
+                                            Categories_id=Categories
+                                            .objects.get(id=id_category))
                                         my_insert.save()
                                         print("foodcate")
 
@@ -226,13 +234,13 @@ def get_better_food(product, category):
 
     id_ref = Food.objects.only('id').get(name_food=product).id
     for id in candidate_ids:
-        if id['Food_id_id'] is not id_ref: # check that it is not the aliment to sub
+        # check that it is not the aliment to sub
+        if id['Food_id_id'] is not id_ref:
             candidate_score = Food.objects.only('nutri_score_food').get(
                 id=id['Food_id_id']).nutri_score_food
             candidate_score = ord(candidate_score)
             if candidate_score <= nutri_score:
                 results.append(id)
-
 
     return results
 
@@ -255,11 +263,14 @@ class SearchView(generic.ListView):
                 temp = Food.objects.filter(id=id['Food_id_id']).values(
                     'name_food', 'nutri_score_food', 'id', 'img_food')
                 my_result.append(
-                    {'name_food': temp[0]['name_food'], 'nutri_score_food': temp[0]['nutri_score_food'],
-                    'id': temp[0]['id'], 'img_food': temp[0]['img_food']})
+                    {'name_food': temp[0]['name_food'],
+                     'nutri_score_food': temp[0]['nutri_score_food'],
+                     'id': temp[0]['id'], 'img_food': temp[0]['img_food']})
 
-            return render(request, self.template_name, {'aliment': aliment, 'category': category,
-                                                        'my_result': my_result, 'id_to_sub': id_to_sub,
+            return render(request, self.template_name, {'aliment': aliment,
+                                                        'category': category,
+                                                        'my_result': my_result,
+                                                        'id_to_sub': id_to_sub,
                                                         'bkg_img': bkg_img})
 
 
@@ -270,14 +281,18 @@ class ProductView(generic.ListView):
         product_id = request.GET['product']
 
         temp = Food.objects.filter(id=product_id).values(
-            'name_food', 'nutri_score_food', 'quantity_food', 'link_food', 'img_food')
-        my_product = ({'name_food': temp[0]['name_food'], 'nutri_score_food': temp[0]['nutri_score_food'],
-                       'quantity_food': temp[0]['quantity_food'], 'link_food': temp[0]['link_food'],
+            'name_food', 'nutri_score_food', 'quantity_food', 'link_food',
+            'img_food')
+        my_product = ({'name_food': temp[0]['name_food'],
+                       'nutri_score_food': temp[0]['nutri_score_food'],
+                       'quantity_food': temp[0]['quantity_food'],
+                       'link_food': temp[0]['link_food'],
                        'img_food': temp[0]['img_food']})
 
         score_range = ['a', 'b', 'c', 'd', 'e']
 
-        return render(request, self.template_name, {'my_product': my_product, 'score_range': score_range})
+        return render(request, self.template_name, {'my_product': my_product,
+                                                    'score_range': score_range})
 
 
 class SavedView(generic.ListView):
@@ -295,13 +310,16 @@ class SavedView(generic.ListView):
         logged = False
         if id_user is not None:
             logged = True
-            if not saved.objects.filter(User_id_saved_id=id_user, Food_id_foodissub_id=tosub, Food_id_foodsub_id=sub).exists():
+            if not saved.objects.filter(User_id_saved_id=id_user,
+                                        Food_id_foodissub_id=tosub, Food_id_foodsub_id=sub).exists():
                 my_insert = saved(
-                    User_id_saved_id=id_user, Food_id_foodissub_id=tosub, Food_id_foodsub_id=sub)
+                    User_id_saved_id=id_user, Food_id_foodissub_id=tosub,
+                    Food_id_foodsub_id=sub)
                 my_insert.save()
                 inserted = True
 
-        return render(request, self.template_name, {'inserted': inserted, 'logged': logged})
+        return render(request, self.template_name, {'inserted': inserted,
+                                                    'logged': logged})
 
 
 class MyFoodView(generic.ListView):
