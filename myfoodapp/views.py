@@ -157,8 +157,7 @@ class PopulateView(generic.ListView):
                                 print("nutri grade fail: ")
                                 print(jData.get('products')[i].get(
                                     'nutrition_grades_tags')[0])
-                            elif jData.get('products')[i]
-                            .get('product_name_fr') is None:
+                            elif jData.get('products')[i].get('product_name_fr') is None:
                                 i = i + 1
                                 print("No name: ")
                                 print(jData.get('products')[
